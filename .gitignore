@@ -1,0 +1,35 @@
+# Environment variables - NEVER commit .env with secrets
+.env
+.env.local
+.env.*.local
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+env/
+.venv/
+
+# Django
+*.sqlite3
+db.sqlite3
+staticfiles/
+media/
+*.log
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Solution (instructor only)
+Solution/
