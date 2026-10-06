@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Dublin Spatial Analysis{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #1f2937;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .dashboard-container {
+            padding: 30px;
+        }
+
+        .stat-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-title {
+            color: #6b7280;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .dashboard-card {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .dashboard-card-header {
+            padding: 18px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .dashboard-card-body {
+            padding: 20px;
+        }
+
+        table {
+            background: white;
+        }
+
+        thead th {
+            background-color: #f3f4f6 !important;
+            font-weight: 600;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="#">
+                Dublin Spatial Analysis
+            </a>
+
+            <span class="navbar-text text-light">
+                Geographic Data Dashboard
+            </span>
+        </div>
+    </nav>
+
+
+    <!-- Main content -->
+    <main class="dashboard-container">
+
+        {% block content %}
+        {% endblock %}
+
+   
