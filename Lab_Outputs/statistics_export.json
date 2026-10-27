@@ -1,0 +1,30 @@
+{
+  "export_date": "2026-10-27T13:15:48.387Z",
+  "city_statistics": {
+    "total_cities": 100,
+    "total_population": 86400100,
+    "population_stats": {
+      "min": 76353,
+      "max": 8982000,
+      "avg": 864001
+    },
+    "countries_count": 19,
+    "city_types_distribution": {
+      "major": 45,
+      "regional": 30,
+      "capital": 19,
+      "town": 6
+    }
+  },
+  "region_statistics": {
+    "total_regions": 50,
+    "total_population": 727981595,
+    "total_area_km2": 5467049.036108611,
+    "region_types_distribution": {
+      "state": 28,
+      "municipality": 3,
+      "country": 19
+    },
+    "countries_count": 19
+  }
+}
