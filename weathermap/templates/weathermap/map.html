@@ -1,0 +1,35 @@
+{% extends 'weathermap/base.html' %}
+{% load static %}
+
+{% block title %}Weather Map - Real-Time Data{% endblock %}
+
+{% block header_controls %}
+<div class="controls">
+    <!-- Enhancement 3: city search -->
+    <form id="search-form" class="search-form" autocomplete="off">
+        <input type="search" id="city-search" list="city-options"
+               placeholder="Search for a city..." aria-label="Search for a city">
+        <datalist id="city-options"></datalist>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Enhancement 4: temperature unit toggle -->
+    <button type="button" id="unit-toggle" class="unit-toggle"
+            aria-label="Switch temperature unit">Show °F</button>
+</div>
+<p id="search-message" class="search-message" role="status"></p>
+{% endblock %}
+
+{% block content %}
+<div class="map-container">
+    <div id="map"></div>
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Loading weather data...</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'weathermap/js/map.js' %}?v={% now 'U' %}"></script>
+{% endblock %}
