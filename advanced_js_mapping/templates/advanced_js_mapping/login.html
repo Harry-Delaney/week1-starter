@@ -1,0 +1,18 @@
+{% extends "advanced_js_mapping/base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block content %}
+<div class="card mx-auto" style="max-width: 32rem">
+  <div class="card-body">
+    <h1 class="h3">Sign in</h1>
+    {% if form.errors %}
+      <p class="alert alert-danger" role="alert">Invalid username or password.</p>
+    {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="hidden" name="next" value="{{ next }}">
+      <button class="btn btn-primary" type="submit">Sign in</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

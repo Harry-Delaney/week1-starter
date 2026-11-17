@@ -17,9 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from mapping.views import map_view
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', map_view, name='map'),
     path('admin/', admin.site.urls),
     path("advanced-js-mapping/", include("advanced_js_mapping.urls")),
+    path("accounts/login/", auth_views.LoginView.as_view(
+    template_name="registration/login.html"
+    ), name="login"),
+    path("accounts/logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]

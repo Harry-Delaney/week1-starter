@@ -25,6 +25,10 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "advanced_js_mapping:map"
+LOGOUT_REDIRECT_URL = "advanced_js_mapping:map"
+
 # OpenStreetMap tile servers need the site origin in the Referer header
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 

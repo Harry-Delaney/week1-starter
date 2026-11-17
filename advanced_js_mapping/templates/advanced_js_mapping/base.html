@@ -285,6 +285,17 @@
                         </ul>
                     </li>
                 </ul>
+                <div class="ms-lg-3 text-white">
+  {% if user.is_authenticated %}
+    <span>Signed in as {{ user.get_username }}</span>
+    <form method="post" action="{% url 'logout' %}" class="d-inline">
+      {% csrf_token %}
+      <button class="btn btn-sm btn-light" type="submit">Sign out</button>
+    </form>
+  {% else %}
+    <a class="btn btn-sm btn-light" href="{% url 'login' %}">Sign in</a>
+  {% endif %}
+</div>
             </div>
         </div>
     </nav>

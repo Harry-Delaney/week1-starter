@@ -4,6 +4,54 @@
 {% block title %}Interactive Map | Advanced JS Mapping{% endblock %}
 
 {% block content %}
+<form hidden aria-hidden="true">{% csrf_token %}</form>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <h2 class="h4">City editing</h2>
+    {% if not user.is_authenticated %}
+      <p>Sign in to search and request editing access.</p>
+      <a href="{% url 'login' %}?next={{ request.path|urlencode }}">Sign in</a>
+    {% else %}
+      {% if perms.advanced_js_mapping.add_advancedcity or perms.advanced_js_mapping.change_advancedcity %}
+      <form id="city-editor" data-create-url="{% url 'advanced_js_mapping:city_create' %}">
+        {% csrf_token %}
+        <label for="city-choice">Action</label>
+        <select id="city-choice" class="form-select mb-2">
+          {% if perms.advanced_js_mapping.add_advancedcity %}
+          <option value="">Create a city</option>
+          {% endif %}
+          {% if perms.advanced_js_mapping.change_advancedcity %}
+          {% for city in editable_cities %}
+          <option value="{{ city.pk }}"
+                  data-url="{% url 'advanced_js_mapping:city_update' city.pk %}"
+                  data-name="{{ city.name }}" data-country="{{ city.country }}"
+                  data-population="{{ city.population }}">{{ city.name }}, {{ city.country }}</option>
+          {% endfor %}
+          {% endif %}
+        </select>
+        <label for="city-name">Name</label>
+        <input id="city-name" class="form-control mb-2" maxlength="100" required>
+        <label for="city-country">Country</label>
+        <input id="city-country" class="form-control mb-2" maxlength="100" required>
+        <label for="city-population">Population</label>
+        <input id="city-population" class="form-control mb-2" type="number" min="0" step="1" required>
+        <div id="city-location">
+          <label for="city-latitude">Latitude</label>
+          <input id="city-latitude" class="form-control mb-2" type="number" min="-90" max="90" step="any">
+          <label for="city-longitude">Longitude</label>
+          <input id="city-longitude" class="form-control mb-2" type="number" min="-180" max="180" step="any">
+        </div>
+        <button id="city-save" class="btn btn-primary" type="submit">Save city</button>
+        <p id="city-message" class="mt-2" role="status" aria-live="polite"></p>
+      </form>
+      {% else %}
+      <p>You are signed in, but do not have permission to edit cities.</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
 <div class="row g-3">
     <div class="col-lg-8">
         <div class="card h-100">
@@ -70,4 +118,5 @@
     document.getElementById('clearMap').addEventListener('click', () => AdvancedMapping.clearAll());
     document.getElementById('exportResults').addEventListener('click', () => AdvancedMapping.exportResults());
 </script>
+<script src="{% static 'advanced_js_mapping/js/city-editor.js' %}"></script>
 {% endblock %}
